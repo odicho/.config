@@ -4,6 +4,27 @@ return {
     ---@type snacks.Config
     opts = {
       picker = {
+        filter = {
+          cwd = true,
+        },
+        exclude = {
+          "**/.git",
+          "**/.svn",
+          "**/.hg",
+          "**/CVS",
+          "**/.DS_Store",
+          "**/Thumbs.db",
+          "**/.classpath",
+          "**/.settings",
+          "**/.yarn",
+          "**/stories/**",
+          "**/**.{stories}.**",
+          "**/__tests__/**",
+          "**/**.{test,tests}.**",
+          "**/__mocks__/**",
+          "**public/**",
+          "**.png"
+        },
         layout = {
           preset = "ivy",
         },
