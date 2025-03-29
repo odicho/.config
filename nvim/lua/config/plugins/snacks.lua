@@ -26,10 +26,11 @@ return {
           "**.png"
         },
         layout = {
+          preview = "main",
           preset = "ivy",
         },
         matcher = {
-          frequency = false,
+          frecency = true,
         },
         sources = {
           explorer = {
@@ -45,7 +46,21 @@ return {
       -- explorer = {},
     },
     keys = {
-      { "<leader>p",  function() Snacks.picker.smart() end,                desc = "Smart Find Files" },
+      { "<bs>p",     function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+      { "<leader>p", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+      {
+        '<bs><leader>',
+        function()
+          Snacks.picker.buffers({
+            on_show = function()
+              vim.cmd.stopinsert()
+            end,
+            current = false,
+            layout = { preview = false },
+          })
+        end,
+        desc = 'buffer switcher',
+      },
       {
         '<leader>,',
         function()
