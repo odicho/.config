@@ -29,11 +29,18 @@ return {
           preview = "main",
           preset = "ivy",
         },
-        matcher = {
-          frecency = true,
+        -- matcher = {
+        --   frecency = true,
+        -- },
+        formatters = {
+          file = {
+            truncate = 80,
+            filename_first = true
+          },
         },
         sources = {
           explorer = {
+            auto_close = true,
             layout = {
               layout = {
                 position = "right"
@@ -43,7 +50,7 @@ return {
         },
 
       },
-      -- explorer = {},
+      explorer = {},
     },
     keys = {
       { "<bs>p",     function() Snacks.picker.smart() end, desc = "Smart Find Files" },
@@ -74,15 +81,26 @@ return {
         end,
         desc = 'buffer switcher',
       },
-      { "<leader>/",  function() Snacks.picker.grep() end,                 desc = "Grep" },
-      { "<leader>sw", function() Snacks.picker.grep_word() end,            desc = "Visual selection or word", mode = { "n", "x" } },
-      -- { "<leader>e", function() Snacks.explorer() end,                   desc = "File Explorer" },
+      { "<leader>/",  function() Snacks.picker.grep() end,             desc = "Grep" },
+      { "<leader>sw", function() Snacks.picker.grep_word() end,        desc = "Visual selection or word", mode = { "n", "x" } },
+      { "<leader>e",  function() Snacks.explorer() end,                desc = "File Explorer" },
       -- LSP
-      { "gd",         function() Snacks.picker.lsp_definitions() end,      desc = "Goto Definition" },
-      { "gD",         function() Snacks.picker.lsp_declarations() end,     desc = "Goto Declaration" },
-      { "gr",         function() Snacks.picker.lsp_references() end,       nowait = true,                     desc = "References" },
-      { "gI",         function() Snacks.picker.lsp_implementations() end,  desc = "Goto Implementation" },
-      { "gy",         function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
+      { "gd",         function() Snacks.picker.lsp_definitions() end,  desc = "Goto Definition" },
+      { "gD",         function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
+      {
+        "gr",
+        function()
+          Snacks.picker.lsp_references({
+            on_show = function()
+              vim.cmd.stopinsert()
+            end,
+          })
+        end,
+        nowait = true,
+        desc = "References"
+      },
+      { "gi", function() Snacks.picker.lsp_implementations() end,  desc = "Goto Implementation" },
+      { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
     }
   }
 }
