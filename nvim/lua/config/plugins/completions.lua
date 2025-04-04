@@ -10,12 +10,17 @@ return {
       appearance = {
         nerd_font_variant = 'mono'
       },
-      completion = { keyword = { range = 'prefix' }, accept = { auto_brackets = { enabled = false }, }, ghost_text = { enabled = true }, documentation = { auto_show = false } },
+      completion = {
+        keyword = { range = 'prefix' },
+        accept = { auto_brackets = { enabled = false }, },
+        ghost_text = { enabled = true },
+        documentation = { auto_show = true },
+      },
       fuzzy = { implementation = "prefer_rust_with_warning" },
       signature = { enabled = true },
       sources = {
         -- add lazydev to your completion providers
-        default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+        default = { "lazydev", "lsp", "path", "buffer", "snippets" },
         providers = {
           lazydev = {
             name = "LazyDev",
