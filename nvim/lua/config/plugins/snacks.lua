@@ -17,21 +17,21 @@ return {
           "**/.classpath",
           "**/.settings",
           "**/.yarn",
+          "**.lock",
           "**/stories/**",
           "**/**.{stories}.**",
-          "**/__tests__/**",
-          "**/**.{test,tests}.**",
           "**/__mocks__/**",
           "**public/**",
           "**.png"
         },
         layout = {
-          preview = "main",
+          -- preview = "main",
           preset = "ivy",
         },
-        -- matcher = {
-        --   frecency = true,
-        -- },
+        matcher = {
+          fuzzy = true,
+          -- frecency = true,
+        },
         formatters = {
           file = {
             truncate = 80,
@@ -50,7 +50,10 @@ return {
         },
 
       },
-      explorer = {},
+      explorer = {
+        enabled = false,
+        replace_netrw = true,
+      },
     },
     keys = {
       { "<bs>p",     function() Snacks.picker.smart() end, desc = "Smart Find Files" },
