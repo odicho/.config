@@ -51,12 +51,6 @@ local servers = {
   },
 }
 
--- vim.diagnostic.config({
---   update_in_insert = true,
---   virtual_text = true,
---   severity_sort = true,
--- })
-
 -- Retrieve the default LSP client capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
