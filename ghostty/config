@@ -1,0 +1,16 @@
+theme=tokyonight_moon
+mouse-hide-while-typing=true
+font-size=16
+font-family="Geist Mono"
+font-style=Light
+font-feature=-calt, -liga, -dlig
+confirm-close-surface=false
+cursor-style=block
+macos-window-shadow=false
+macos-titlebar-style=tabs
+shell-integration-features=no-cursor
+macos-option-as-alt=true
+keybind = cmd+right=text:\x06
+keybind = cmd+left=text:\x02
+keybind = alt+left=esc:b
+keybind = alt+right=esc:f
