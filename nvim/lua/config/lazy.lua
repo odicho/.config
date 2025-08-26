@@ -26,5 +26,6 @@ require("lazy").setup({
   spec = {
     { import = "config.plugins" },
   },
+  git = { timeout = 360 },
   change_detection = { notify = false }
 })

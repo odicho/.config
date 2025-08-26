@@ -56,8 +56,8 @@ return {
       },
     },
     keys = {
-      { "<bs>p",     function() Snacks.picker.smart() end, desc = "Smart Find Files" },
-      { "<leader>p", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+      -- { "<bs>p",     function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+      -- { "<leader>p", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
       {
         '<bs><leader>',
         function()
