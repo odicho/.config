@@ -24,11 +24,29 @@ vim.diagnostic.config {
 local blink_cmp = require('blink-cmp')
 
 local servers = {
-  tsserver = {
-    cmd = { 'typescript-language-server', '--stdio' },
-    filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx' },
-    root_markers = { 'package.json', 'tsconfig.json', '.git' },
-    settings = {},
+  -- tsserver = {
+  --   cmd = { 'typescript-language-server', '--stdio' },
+  --   filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx' },
+  --   root_markers = { 'package.json', 'tsconfig.json', '.git' },
+  --   settings = {},
+  -- },
+  tsgo = {
+    cmd = { 'tsgo', '--lsp', '--stdio' },
+    filetypes = {
+      'javascript',
+      'javascriptreact',
+      'javascript.jsx',
+      'typescript',
+      'typescriptreact',
+      'typescript.tsx',
+    },
+    root_markers = {
+      'tsconfig.json',
+      'jsconfig.json',
+      'package.json',
+      '.git',
+      'tsconfig.base.json',
+    },
   },
   lua_ls = {
     cmd = { 'lua-language-server' },
@@ -67,17 +85,18 @@ end
 -- Set up autocommands for LSP features
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
-    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+    -- Disable for when it conflicts with prettier all the time
+    -- local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
     local buf = args.buf
-
-    if client:supports_method('textDocument/formatting') then
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        buffer = args.buf,
-        callback = function()
-          vim.lsp.buf.format({ bufnr = buf, id = client.id, timeout_ms = 1000 })
-        end,
-      })
-    end
+    --
+    -- if client:supports_method('textDocument/formatting') then
+    --   vim.api.nvim_create_autocmd('BufWritePre', {
+    --     buffer = args.buf,
+    --     callback = function()
+    --       vim.lsp.buf.format({ bufnr = buf, id = client.id, timeout_ms = 1000 })
+    --     end,
+    --   })
+    -- end
 
     vim.keymap.set('n', 'g.', vim.lsp.buf.code_action, { buffer = buf, desc = 'LSP: Code Action' })
     vim.keymap.set('n', 'gh', vim.lsp.buf.hover, { buffer = buf, desc = 'LSP: Hover' })
