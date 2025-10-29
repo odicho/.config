@@ -101,5 +101,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'g.', vim.lsp.buf.code_action, { buffer = buf, desc = 'LSP: Code Action' })
     vim.keymap.set('n', 'gh', vim.lsp.buf.hover, { buffer = buf, desc = 'LSP: Hover' })
     vim.keymap.set("n", "<bs>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
   end,
 })

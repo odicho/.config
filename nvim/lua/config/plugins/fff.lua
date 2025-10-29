@@ -1,7 +1,13 @@
 return {
   "dmtrKovalenko/fff.nvim",
   build = "cargo build --release",
-  opts = {},
+  opts = {
+    prompt = '> ',
+    layout = {
+      height = 0.95,
+      width = 1,
+    },
+  },
   keys = {
     {
       "<bs>p",

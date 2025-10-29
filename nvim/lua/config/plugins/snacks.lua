@@ -18,15 +18,33 @@ return {
           "**/.settings",
           "**/.yarn",
           "**.lock",
-          "**/stories/**",
-          "**/**.{stories}.**",
+          -- "**/stories/**",
+          -- "**/**.{stories}.**",
           "**/__mocks__/**",
           "**public/**",
           "**.png"
         },
         layout = {
-          -- preview = "main",
-          preset = "ivy",
+          reverse = true,
+          layout = {
+            box = "horizontal",
+            backdrop = false,
+            width = 0.99,
+            height = 0.99,
+            border = "none",
+            {
+              box = "vertical",
+              { win = "list",  title = " Results ", title_pos = "center", border = true },
+              { win = "input", height = 1,          border = true,        title = "{title} {live} {flags}", title_pos = "center" },
+            },
+            {
+              win = "preview",
+              title = "{preview:Preview}",
+              width = 0.55,
+              border = true,
+              title_pos = "center",
+            },
+          },
         },
         matcher = {
           fuzzy = true,
@@ -34,8 +52,10 @@ return {
         },
         formatters = {
           file = {
-            truncate = 80,
+            min_width = 100,
+            truncate = "beginning",
             filename_first = true
+            -- filename_only = true,
           },
         },
         sources = {

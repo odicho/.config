@@ -20,12 +20,14 @@ vim.keymap.set("n", "<c-i>", "<c-i>zz", { noremap = true })
 vim.keymap.set("n", "{", "{zz", { noremap = true })
 vim.keymap.set("n", "}", "}zz", { noremap = true })
 
-vim.keymap.set("n", "<bs>w", ":w<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>w", ":w<CR>", { noremap = true })
+vim.keymap.set("n", "<bs>w", ":up<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>w", ":up<CR>", { noremap = true })
 vim.keymap.set("n", "<bs>q", ":q<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>q", ":q<CR>", { noremap = true })
-vim.keymap.set("n", "<bs><Tab>", ":bprevious<CR>", { silent = true, desc = "Previous buffer" })
-vim.keymap.set("n", "<leader><Tab>", ":bprevious<CR>", { silent = true, desc = "Previous buffer" })
+vim.keymap.set("n", "<bs><Tab>", ":b#<CR>", { silent = true, desc = "Switch to alternate buffer" })
+vim.keymap.set("n", "<leader><Tab>", ":b#<CR>", { silent = true, desc = "Switch to alternate buffer" })
+vim.keymap.set("n", "<bs>d", ":bd<CR>", { silent = true, desc = "Delete current buffer" })
+vim.keymap.set("n", "<leader>d", ":bd<CR>", { silent = true, desc = "Delete current buffer" })
 
 local alt_arrow_keys = {
   up = { "<A-Up>", "<A-k>" },
