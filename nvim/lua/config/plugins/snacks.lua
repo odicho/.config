@@ -1,129 +1,122 @@
 return {
   {
     "folke/snacks.nvim",
-    ---@type snacks.Config
-    opts = {
-      picker = {
-        filter = {
-          cwd = true,
-        },
-        exclude = {
-          "**/.git",
-          "**/.svn",
-          "**/.hg",
-          "**/CVS",
-          "**/.DS_Store",
-          "**/Thumbs.db",
-          "**/.classpath",
-          "**/.settings",
-          "**/.yarn",
-          "**.lock",
-          -- "**/stories/**",
-          -- "**/**.{stories}.**",
-          "**/__mocks__/**",
-          "**public/**",
-          "**.png"
-        },
+    opts = function()
+      local full_layout = {
+        reverse = true,
         layout = {
-          reverse = true,
-          layout = {
-            box = "horizontal",
-            backdrop = false,
-            width = 0.99,
-            height = 0.99,
-            border = "none",
-            {
-              box = "vertical",
-              { win = "list",  title = " Results ", title_pos = "center", border = true },
-              { win = "input", height = 1,          border = true,        title = "{title} {live} {flags}", title_pos = "center" },
-            },
-            {
-              win = "preview",
-              title = "{preview:Preview}",
-              width = 0.55,
-              border = true,
-              title_pos = "center",
-            },
+          box = "horizontal",
+          backdrop = false,
+          width = 0.99,
+          height = 0.99,
+          border = "none",
+          {
+            box = "vertical",
+            { win = "list",  title = " Results ", title_pos = "center", border = true },
+            { win = "input", height = 1,          border = true,        title = "{title} {live} {flags}", title_pos = "center" },
+          },
+          {
+            win = "preview",
+            title = "{preview:Preview}",
+            width = 0.55,
+            border = true,
+            title_pos = "center",
           },
         },
-        matcher = {
-          fuzzy = true,
-          -- frecency = true,
-        },
-        formatters = {
-          file = {
-            min_width = 100,
-            truncate = "beginning",
-            filename_first = true
-            -- filename_only = true,
+      }
+
+      return {
+        picker = {
+          filter = { cwd = true },
+          exclude = {
+            "**/.svn",
+            "**/.hg",
+            "**/CVS",
+            "**/.DS_Store",
+            "**/Thumbs.db",
+            "**/.classpath",
+            "**/.settings",
+            "**/.yarn",
+            "**.lock",
+            "**/__mocks__/**",
+            "**public/**",
+            "**.png",
           },
-        },
-        sources = {
-          explorer = {
-            auto_close = true,
-            layout = {
+          matcher = { fuzzy = true },
+          formatters = {
+            file = { min_width = 100, truncate = "beginning", filename_first = true },
+          },
+          sources = {
+            explorer = {
+              auto_close = true,
               layout = {
-                position = "right"
+                layout = {
+                  position = "right",
+                  width = 50
+                },
               },
             },
+            grep = { layout = full_layout },
+            buffers = { layout = full_layout },
+            smart = { layout = full_layout },
+            lsp_definitions = { layout = full_layout },
+            lsp_references = { layout = full_layout },
+            lsp_type_definitions = { layout = full_layout },
           },
         },
+        explorer = {
+          enabled = false,
+          replace_netrw = true,
+        },
+      }
+    end,
 
+    keys = {
+      {
+        "<leader>,",
+        function()
+          Snacks.picker.buffers({
+            on_show = function() vim.cmd.stopinsert() end,
+            current = false,
+            layout = { preview = false },
+          })
+        end,
+        desc = "buffer switcher",
       },
-      explorer = {
-        enabled = false,
-        replace_netrw = true,
+      {
+        "<bs><leader>",
+        function()
+          Snacks.picker.buffers({
+            on_show = function() vim.cmd.stopinsert() end,
+            current = false,
+            layout = { preview = false },
+          })
+        end,
+        desc = "buffer switcher",
+      },
+
+      {
+        "<leader>/",
+        function() Snacks.picker.grep() end,
+        desc = "Grep",
+      },
+      {
+        "<leader>e",
+        function() Snacks.explorer() end,
+        desc = "File Explorer",
+      },
+      -- LSP
+      {
+        "gd",
+        function() Snacks.picker.lsp_definitions() end,
+        desc = "Goto definition"
+      },
+      { "gr", function() Snacks.picker.lsp_references({ on_show = function() vim.cmd.stopinsert() end, }) end, nowait = true, desc = "References" },
+      {
+        "gy",
+        function() Snacks.picker.lsp_type_definitions() end,
+        desc = "Goto T[y]pe Definition"
       },
     },
-    keys = {
-      -- { "<bs>p",     function() Snacks.picker.smart() end, desc = "Smart Find Files" },
-      -- { "<leader>p", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
-      {
-        '<bs><leader>',
-        function()
-          Snacks.picker.buffers({
-            on_show = function()
-              vim.cmd.stopinsert()
-            end,
-            current = false,
-            layout = { preview = false },
-          })
-        end,
-        desc = 'buffer switcher',
-      },
-      {
-        '<leader>,',
-        function()
-          Snacks.picker.buffers({
-            on_show = function()
-              vim.cmd.stopinsert()
-            end,
-            current = false,
-            layout = { preview = false },
-          })
-        end,
-        desc = 'buffer switcher',
-      },
-      { "<leader>/",  function() Snacks.picker.grep() end,             desc = "Grep" },
-      { "<leader>sw", function() Snacks.picker.grep_word() end,        desc = "Visual selection or word", mode = { "n", "x" } },
-      { "<leader>e",  function() Snacks.explorer() end,                desc = "File Explorer" },
-      -- LSP
-      { "gd",         function() Snacks.picker.lsp_definitions() end,  desc = "Goto Definition" },
-      { "gD",         function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
-      {
-        "gr",
-        function()
-          Snacks.picker.lsp_references({
-            on_show = function()
-              vim.cmd.stopinsert()
-            end,
-          })
-        end,
-        nowait = true,
-        desc = "References"
-      },
-      { "gi", function() Snacks.picker.lsp_implementations() end,  desc = "Goto Implementation" },
-      { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
-    }
-  }
+  },
 }
