@@ -6,12 +6,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
-    vim.hl.on_yank({ timeout = 50 })
+    vim.hl.on_yank({ timeout = 20 })
   end,
 })
 
 vim.diagnostic.config {
-  update_in_insert = false,
+  update_in_insert = true,
   severity_sort = true,
   float = { border = 'rounded', source = 'if_many' },
   underline = { severity = vim.diagnostic.severity.ERROR },
@@ -30,6 +30,7 @@ local servers = {
   --   root_markers = { 'package.json', 'tsconfig.json', '.git' },
   --   settings = {},
   -- },
+  -- biome = {},
   tsgo = {
     cmd = { 'tsgo', '--lsp', '--stdio' },
     filetypes = {
@@ -46,7 +47,7 @@ local servers = {
       'package.json',
       '.git',
       'tsconfig.base.json',
-    },
+    }
   },
   lua_ls = {
     cmd = { 'lua-language-server' },

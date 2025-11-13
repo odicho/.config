@@ -1,8 +1,5 @@
 -- leader -> ANSI keyboard w/ QWERTY
 -- bs -> ZSA Voyager w/ Colemak DH
-vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<cr>")
-vim.keymap.set("n", "<leader>x", ":.lua<cr>", { silent = true, desc = "Execute current line as Lua" })
-vim.keymap.set("v", "<leader>x", ":lua<cr>", { silent = true, desc = "Execute selected Lua" })
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>")
 vim.keymap.set("n", "<c-h>", "<c-w><c-h>", { desc = "move focus to the left window" })
