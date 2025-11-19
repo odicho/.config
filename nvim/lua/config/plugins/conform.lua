@@ -44,6 +44,7 @@ return {
       javascriptreact = { "biome" },
       typescriptreact = { "biome" },
       json = { "biome" },
+      jsonc = { "biome" },
       css = { "biome" },
       html = { "biome" },
       markdown = { "biome" },
