@@ -43,10 +43,8 @@ local servers = {
     },
     root_markers = {
       'tsconfig.json',
-      'jsconfig.json',
       'package.json',
       '.git',
-      'tsconfig.base.json',
     }
   },
   lua_ls = {
