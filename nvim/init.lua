@@ -41,11 +41,11 @@ local servers = {
       'typescriptreact',
       'typescript.tsx',
     },
-    root_markers = {
-      'tsconfig.json',
-      'package.json',
-      '.git',
-    }
+    root_dir = function(bufnr, on_dir)
+      local root_markers = { 'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml', 'bun.lockb', 'bun.lock' }
+      local project_root = vim.fs.root(bufnr, root_markers) or vim.fn.getcwd()
+      on_dir(project_root)
+    end,
   },
   lua_ls = {
     cmd = { 'lua-language-server' },
