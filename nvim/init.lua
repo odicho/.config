@@ -31,15 +31,40 @@ local servers = {
   --   settings = {},
   -- },
   -- biome = {},
+  tailwindcss = {
+    cmd = { 'tailwindcss-language-server', '--stdio' },
+    root_dir = function(bufnr, on_dir)
+      local root = vim.fs.root(bufnr, { 'tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js' })
+          or vim.fs.root(bufnr, 'package.json')
+      if root then on_dir(root) end
+    end,
+    settings = {
+      tailwindCSS = {
+        validate = true,
+        colorDecorators = false,
+        lint = {
+          cssConflict = 'warning',
+          invalidApply = 'error',
+          invalidScreen = 'error',
+          invalidVariant = 'error',
+          invalidConfigPath = 'error',
+          invalidTailwindDirective = 'error',
+          recommendedVariantOrder = 'warning',
+        },
+        classAttributes = {
+          'class',
+          'className',
+        },
+      },
+    },
+  },
   tsgo = {
     cmd = { 'tsgo', '--lsp', '--stdio' },
     filetypes = {
       'javascript',
       'javascriptreact',
-      'javascript.jsx',
       'typescript',
-      'typescriptreact',
-      'typescript.tsx',
+      'typescriptreact'
     },
     root_dir = function(bufnr, on_dir)
       local root_markers = { 'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml', 'bun.lockb', 'bun.lock' }
