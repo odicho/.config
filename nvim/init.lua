@@ -67,9 +67,15 @@ local servers = {
       'typescriptreact'
     },
     root_dir = function(bufnr, on_dir)
-      local root_markers = { 'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml', 'bun.lockb', 'bun.lock' }
-      local project_root = vim.fs.root(bufnr, root_markers) or vim.fn.getcwd()
-      on_dir(project_root)
+      local root = vim.fs.root(bufnr, {
+        'tsconfig.json',
+        'jsconfig.json',
+        'package.json',
+        'pnpm-workspace.yaml',
+        '.git',
+      }) or vim.fn.getcwd()
+
+      on_dir(root)
     end,
   },
   lua_ls = {

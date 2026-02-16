@@ -49,6 +49,12 @@ return {
       html = { "biome" },
       markdown = { "biome" },
     },
+    formatters = {
+      biome = {
+        args = { "format", "--write", "$FILENAME" },
+        stdin = false,
+      },
+    },
   },
   config = function(_, opts)
     local conform = require("conform")
