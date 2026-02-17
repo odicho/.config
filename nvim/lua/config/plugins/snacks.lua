@@ -72,28 +72,28 @@ return {
     end,
 
     keys = {
-      {
-        "<leader>,",
-        function()
-          Snacks.picker.buffers({
-            on_show = function() vim.cmd.stopinsert() end,
-            current = false,
-            layout = { preview = false },
-          })
-        end,
-        desc = "buffer switcher",
-      },
-      {
-        "<bs><leader>",
-        function()
-          Snacks.picker.buffers({
-            on_show = function() vim.cmd.stopinsert() end,
-            current = false,
-            layout = { preview = false },
-          })
-        end,
-        desc = "buffer switcher",
-      },
+      -- {
+      --   "<leader>,",
+      --   function()
+      --     Snacks.picker.buffers({
+      --       on_show = function() vim.cmd.stopinsert() end,
+      --       current = false,
+      --       layout = { preview = false },
+      --     })
+      --   end,
+      --   desc = "buffer switcher",
+      -- },
+      -- {
+      --   "<bs><leader>",
+      --   function()
+      --     Snacks.picker.buffers({
+      --       on_show = function() vim.cmd.stopinsert() end,
+      --       current = false,
+      --       layout = { preview = false },
+      --     })
+      --   end,
+      --   desc = "buffer switcher",
+      -- },
 
       {
         "<leader>/",

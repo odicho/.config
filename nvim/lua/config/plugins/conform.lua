@@ -35,25 +35,20 @@
 -- }
 
 
+-- look up how to do multiple formatters
 return {
   "stevearc/conform.nvim",
   opts = {
     formatters_by_ft = {
-      javascript = { "biome" },
-      typescript = { "biome" },
-      javascriptreact = { "biome" },
-      typescriptreact = { "biome" },
-      json = { "biome" },
-      jsonc = { "biome" },
-      css = { "biome" },
-      html = { "biome" },
-      markdown = { "biome" },
-    },
-    formatters = {
-      biome = {
-        args = { "format", "--write", "$FILENAME" },
-        stdin = false,
-      },
+      javascript = { "oxfmt" },
+      typescript = { "oxfmt" },
+      javascriptreact = { "oxfmt" },
+      typescriptreact = { "oxfmt" },
+      json = { "oxfmt" },
+      jsonc = { "oxfmt" },
+      css = { "oxfmt" },
+      html = { "oxfmt" },
+      markdown = { "oxfmt" },
     },
   },
   config = function(_, opts)
@@ -62,18 +57,18 @@ return {
 
     vim.keymap.set("n", "<bs>f", function()
       conform.format({ async = true, lsp_fallback = true })
-    end, { desc = "Format file with Biome" })
+    end, { desc = "Format file with oxfmt" })
 
     vim.keymap.set("n", "<leader>f", function()
       conform.format({ async = true, lsp_fallback = true })
-    end, { desc = "Format file with Biome" })
+    end, { desc = "Format file with oxfmt" })
 
     vim.keymap.set("v", "<bs>f", function()
       conform.format({ async = true, lsp_fallback = true })
-    end, { desc = "Format selection with Biome" })
+    end, { desc = "Format selection with oxfmt" })
 
     vim.keymap.set("v", "<leader>f", function()
       conform.format({ async = true, lsp_fallback = true })
-    end, { desc = "Format selection with Biome" })
+    end, { desc = "Format selection with oxfmt" })
   end,
 }

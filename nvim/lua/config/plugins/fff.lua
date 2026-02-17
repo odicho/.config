@@ -1,9 +1,9 @@
 return {
   "dmtrKovalenko/fff.nvim",
-  build = function ()
-    require("fff.download").download_or_build_binary()  
+  build = function()
+    require("fff.download").download_or_build_binary()
   end,
-  lazy= false,
+  lazy = false,
   opts = {
     prompt = '> ',
     layout = {
@@ -25,6 +25,26 @@ return {
         require("fff").find_files()
       end,
       desc = "Open file picker",
+    },
+    {
+      "<leader>,",
+      function() require('fff').live_grep() end,
+      desc = 'LiFFFe grep',
+    },
+    {
+      "<bs><leader>",
+      function() require('fff').live_grep() end,
+      desc = 'LiFFFe grep',
+    },
+    {
+      "<leader>z",
+      function() require('fff').live_grep({ grep = { modes = { 'fuzzy', 'plain' } } }) end,
+      desc = 'Live fffuzy grep',
+    },
+    {
+      "<bs>z",
+      function() require('fff').live_grep({ grep = { modes = { 'fuzzy', 'plain' } } }) end,
+      desc = 'Live fffuzy grep',
     },
   },
 }
