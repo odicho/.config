@@ -27,12 +27,12 @@ return {
       desc = "Open file picker",
     },
     {
-      "<leader>,",
+      "<leader>/",
       function() require('fff').live_grep() end,
       desc = 'LiFFFe grep',
     },
     {
-      "<bs><leader>",
+      "<bs>g",
       function() require('fff').live_grep() end,
       desc = 'LiFFFe grep',
     },
