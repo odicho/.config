@@ -52,8 +52,18 @@ return {
         command = "biome",
         args = { "format", "--stdin-file-path", "$FILENAME" },
         stdin = true,
-      }
-    }
+        condition = function(ctx)
+          return vim.fs.find(
+            { "biome.json", "biome.jsonc" },
+            { path = ctx.dirname, upward = true }
+          )[1] ~= nil
+        end,
+      },
+      oxfmt = {
+        command = "oxfmt",
+        stdin = true,
+      },
+    },
   },
   config = function(_, opts)
     local conform = require("conform")
