@@ -46,6 +46,7 @@ return {
       typescriptreact = { "biome", "oxfmt" },
       json = { "biome", "oxfmt" },
       css = { "biome", "oxfmt" },
+      html = { "biome", "oxfmt" },
       scss = { "biome", "oxfmt" },
       markdown = { "oxfmt" },
     },
