@@ -78,6 +78,18 @@ local servers = {
       on_dir(root)
     end,
   },
+  cssls = {
+    cmd = { 'vscode-css-language-server', '--stdio' },
+    filetypes = { 'css', 'scss', 'less' },
+    root_dir = function(bufnr, on_dir)
+      local root = vim.fs.root(bufnr, { 'package.json', '.git' }) or vim.fn.getcwd()
+      on_dir(root)
+    end,
+    settings = {
+      css = { validate = true },
+      scss = { validate = true },
+    },
+  },
   lua_ls = {
     cmd = { 'lua-language-server' },
     filetypes = { 'lua' },

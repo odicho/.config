@@ -45,6 +45,8 @@ return {
       javascriptreact = { "biome", "oxfmt" },
       typescriptreact = { "biome", "oxfmt" },
       json = { "biome", "oxfmt" },
+      css = { "biome", "oxfmt" },
+      scss = { "biome", "oxfmt" },
       markdown = { "oxfmt" },
     },
     formatters = {
