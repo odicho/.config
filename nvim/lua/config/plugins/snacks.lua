@@ -39,8 +39,6 @@ return {
             "**/.yarn",
             "**.lock",
             "**/__mocks__/**",
-            "**public/**",
-            "**.png",
           },
           matcher = { fuzzy = true },
           formatters = {
