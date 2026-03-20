@@ -67,3 +67,6 @@ source ~/.orbstack/shell/init2.fish 2>/dev/null || :
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+# opencode
+fish_add_path /Users/odicho/.opencode/bin
